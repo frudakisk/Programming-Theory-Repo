@@ -5,23 +5,28 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
-    public GameObject ballPrefab;
+    public GameObject[] ballPrefabs;
     public GameObject player;
+    private GameObject currentBall;
 
     private int maxBalls = 5;
     public int ballCount;
+
+    public int score;
 
     // Start is called before the first frame update
     void Start()
     {
         ballCount = 0;
+        currentBall = ballPrefabs[0];
     }
 
     // Update is called once per frame
     void Update()
     {
+        KeyForBallSelection();
 
-        if(Input.GetMouseButtonDown(0) && ballCount < maxBalls)
+        if (Input.GetMouseButtonDown(0) && ballCount < maxBalls)
         {
             InstantiateBall();
             ballCount++;
@@ -51,7 +56,8 @@ public class GameManager : MonoBehaviour
 
             Vector3 spawnPosition = new Vector3(player.transform.position.x, 1, player.transform.position.z);
 
-            GameObject ball = Instantiate(ballPrefab, spawnPosition, Quaternion.identity);
+            //make sure to change array
+            GameObject ball = Instantiate(currentBall, spawnPosition, Quaternion.identity);
             shootBallInMouseDirection(ball, mousePos);
         }
         
@@ -61,8 +67,36 @@ public class GameManager : MonoBehaviour
     {
         Vector3 directionVector = mousePos - ball.transform.position;
         directionVector.Normalize();
-        BallBehaviour ballBehaviour = ball.GetComponent<BallBehaviour>();
-        ballBehaviour.direction = directionVector;
+        if(currentBall == ballPrefabs[0])
+        {
+            BallBehaviour ballBehaviour = ball.GetComponent<BallBehaviour>();
+            ballBehaviour.direction = directionVector;
+
+        }
+        else if (currentBall == ballPrefabs[1])
+        {
+            GreatBallBehaviour ballBehaviour = ball.GetComponent<GreatBallBehaviour>();
+            ballBehaviour.direction = directionVector;
+        }
+        
+    }
+
+    private void KeyForBallSelection()
+    {
+        //have user select which ball to throw
+        //1 is default
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Debug.Log("Using simple ball");
+            currentBall = ballPrefabs[0];
+        }
+
+        //2 is great ball
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Debug.Log("use great ball");
+            currentBall = ballPrefabs[1];
+        }
     }
 
     

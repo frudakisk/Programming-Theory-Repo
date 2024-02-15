@@ -6,10 +6,22 @@ public class BallBehaviour : MonoBehaviour
 {
     private GameManager gameManager;
 
-    public float speed;
+    private float speed = 10f;
+    private int capturePoints = 5;
+
     public Vector3 direction;
 
     private float time = 5.0f;
+
+    public virtual float Speed
+    {
+        get { return speed; }
+    }
+
+    public virtual int CapturePoints
+    {
+        get { return capturePoints; }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -21,9 +33,14 @@ public class BallBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(direction * speed * Time.deltaTime);
+        transform.Translate(direction * Speed * Time.deltaTime);
     }
 
+    /// <summary>
+    /// Create a timer for how long the ball should exist
+    /// </summary>
+    /// <param name="time">the amount of time the ball should exist</param>
+    /// <returns>a coroutine</returns>
     private IEnumerator LifeTime(float time)
     {
         float remainingTime = time;
@@ -36,4 +53,12 @@ public class BallBehaviour : MonoBehaviour
         Destroy(gameObject);
         gameManager.ballCount--;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        gameManager.ballCount--;
+        Destroy(gameObject);
+    }
+
+
 }
