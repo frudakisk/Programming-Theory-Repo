@@ -357,7 +357,9 @@
 -analyzer:"/Applications/Unity/Hub/Editor/2022.3.6f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Scripts/BallBehaviour.cs"
 "Assets/Scripts/GameManager.cs"
+"Assets/Scripts/Gameplay UI Handler.cs"
 "Assets/Scripts/GreatBallBehaviour.cs"
+"Assets/Scripts/UltraBallBehaviour.cs"
 -langversion:9.0
 
 /deterministic

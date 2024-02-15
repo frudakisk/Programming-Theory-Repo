@@ -78,6 +78,11 @@ public class GameManager : MonoBehaviour
             GreatBallBehaviour ballBehaviour = ball.GetComponent<GreatBallBehaviour>();
             ballBehaviour.direction = directionVector;
         }
+        else if (currentBall == ballPrefabs[2])
+        {
+            UltraBallBehaviour ballBehaviour = ball.GetComponent<UltraBallBehaviour>();
+            ballBehaviour.direction = directionVector;
+        }
         
     }
 
@@ -96,6 +101,12 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("use great ball");
             currentBall = ballPrefabs[1];
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            Debug.Log("Using ultra ball");
+            currentBall = ballPrefabs[2];
         }
     }
 

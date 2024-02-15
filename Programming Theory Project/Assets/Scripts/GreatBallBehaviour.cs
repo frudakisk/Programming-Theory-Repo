@@ -9,4 +9,9 @@ public class GreatBallBehaviour : BallBehaviour
         get { return 20f; }
     }
 
+    public override int CapturePoints
+    {
+        get { return 10; }
+    }
+
 }

@@ -56,6 +56,11 @@ public class BallBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //if we hit a monster, add ball specific points to score
+        if(other.gameObject.CompareTag("Monster"))
+        {
+            gameManager.score += CapturePoints;
+        }
         gameManager.ballCount--;
         Destroy(gameObject);
     }
