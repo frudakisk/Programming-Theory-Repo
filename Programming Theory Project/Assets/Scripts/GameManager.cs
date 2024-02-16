@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,9 +9,9 @@ public class GameManager : MonoBehaviour
     public GameObject[] ballPrefabs;
     public GameObject[] monsterPrefabs;
     public GameObject player;
-    private GameObject currentBall;
+    public GameObject currentBall { get; private set; } //want others to access but not change it
 
-    private int maxBalls = 5;
+    public int maxBalls = 5;
     public int ballCount;
 
     public int score;
@@ -19,6 +20,10 @@ public class GameManager : MonoBehaviour
 
     private float spawnRate;
 
+    private float time = 60.0f;
+
+    public TextMeshProUGUI timeText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +31,7 @@ public class GameManager : MonoBehaviour
         ballCount = 0;
         currentBall = ballPrefabs[0];
         spawnRate = 2.0f;
+        StartCoroutine(PlayTime(time));
         StartCoroutine(SpawnMonsters(spawnRate));
     }
 
@@ -133,5 +139,23 @@ public class GameManager : MonoBehaviour
             Instantiate(monsterPrefabs[index], spawnPos, Quaternion.identity);
         }
     }
-    
+
+    IEnumerator PlayTime(float time)
+    {
+        float remainingTime = time;
+        while(remainingTime >= 0)
+        {
+            UpdateTimer(remainingTime, timeText);
+            yield return new WaitForSeconds(1.0f);
+            remainingTime--;
+        }
+        gameOver = true;
+    }
+
+    private void UpdateTimer(float time, TextMeshProUGUI timeText)
+    {
+        string minutes = Mathf.Floor(time / 60).ToString("00");
+        string seconds = (time % 60).ToString("00");
+        timeText.text = "Time: " + minutes + ":" + seconds;
+    }
 }

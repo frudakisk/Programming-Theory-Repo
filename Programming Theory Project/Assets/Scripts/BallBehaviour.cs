@@ -7,11 +7,11 @@ public class BallBehaviour : MonoBehaviour
     private GameManager gameManager;
 
     private float speed = 10f;
-    private int capturePoints = 5;
+    private int capturePoints = 15;
 
     public Vector3 direction;
 
-    private float time = 15.0f;
+    private float time = 5.0f;
 
     public virtual float Speed
     {
