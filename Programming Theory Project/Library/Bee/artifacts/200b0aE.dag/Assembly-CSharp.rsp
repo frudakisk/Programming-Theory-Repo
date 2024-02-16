@@ -359,6 +359,7 @@
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/Gameplay UI Handler.cs"
 "Assets/Scripts/GreatBallBehaviour.cs"
+"Assets/Scripts/MonsterBehaviour.cs"
 "Assets/Scripts/UltraBallBehaviour.cs"
 -langversion:9.0
 

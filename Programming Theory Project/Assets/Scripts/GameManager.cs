@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
 
     public GameObject[] ballPrefabs;
+    public GameObject[] monsterPrefabs;
     public GameObject player;
     private GameObject currentBall;
 
@@ -14,11 +15,18 @@ public class GameManager : MonoBehaviour
 
     public int score;
 
+    public bool gameOver;
+
+    private float spawnRate;
+
     // Start is called before the first frame update
     void Start()
     {
+        gameOver = false;
         ballCount = 0;
         currentBall = ballPrefabs[0];
+        spawnRate = 2.0f;
+        StartCoroutine(SpawnMonsters(spawnRate));
     }
 
     // Update is called once per frame
@@ -110,5 +118,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+    //between 18 and 5 on z axis we should spawn monsters
+    IEnumerator SpawnMonsters(float spawnRate)
+    {
+        while(!gameOver)
+        {
+            yield return new WaitForSeconds(spawnRate);
+            //create spawn location on random z between 5 and 18
+            //initialize a random monster at every set interval
+            float zSpawn = Random.Range(-18, 5);
+            int index = Random.Range(0, monsterPrefabs.Length);
+            Vector3 spawnPos = new Vector3(-50, 1, zSpawn);
+            Instantiate(monsterPrefabs[index], spawnPos, Quaternion.identity);
+        }
+    }
     
 }
