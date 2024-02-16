@@ -15,10 +15,11 @@ public class GameManager : MonoBehaviour
     public int ballCount;
 
     public int score;
+    private int currentHighscore;
 
     public bool gameOver;
 
-    private float spawnRate;
+    public static float spawnRate;
 
     private float time = 60.0f;
 
@@ -31,7 +32,7 @@ public class GameManager : MonoBehaviour
         gameOver = false;
         ballCount = 0;
         currentBall = ballPrefabs[0];
-        spawnRate = 2.0f;
+        currentHighscore = MainMenuManager.Instance.highscore;
         StartCoroutine(PlayTime(time));
         StartCoroutine(SpawnMonsters(spawnRate));
     }
@@ -53,6 +54,11 @@ public class GameManager : MonoBehaviour
         if(gameOver)
         {
             StopAllCoroutines();
+            if (score > currentHighscore)
+            {
+                MainMenuManager.Instance.highscore = score;
+            }
+
             gameOverPanel.SetActive(true);
         }
     }

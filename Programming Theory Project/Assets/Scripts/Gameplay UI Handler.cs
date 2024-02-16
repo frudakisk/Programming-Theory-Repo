@@ -12,6 +12,7 @@ public class GameplayUIHandler : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public Image ballImage;
     public TextMeshProUGUI ballsLeftText;
+    public TextMeshProUGUI highscoreText;
 
     public Sprite redBall;
     public Sprite blueBall;
@@ -28,6 +29,7 @@ public class GameplayUIHandler : MonoBehaviour
     {
         scoreText.text = "Score: " + gameManager.score;
         ballsLeftText.text = "Balls Left: " + (gameManager.maxBalls - gameManager.ballCount);
+        highscoreText.text = "Highscore: " + MainMenuManager.Instance.highscore;
 
         ShowBall();
     }
