@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI timeText;
     public GameObject gameOverPanel;
 
+    private AudioManager audioManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,7 @@ public class GameManager : MonoBehaviour
         ballCount = 0;
         currentBall = ballPrefabs[0];
         currentHighscore = MainMenuManager.Instance.highscore;
+        audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManager>();
         StartCoroutine(PlayTime(time));
         StartCoroutine(SpawnMonsters(spawnRate));
     }
@@ -57,6 +60,7 @@ public class GameManager : MonoBehaviour
             if (score > currentHighscore)
             {
                 MainMenuManager.Instance.highscore = score;
+                MainMenuManager.Instance.highscoreName = MainMenuManager.Instance.username;
             }
 
             gameOverPanel.SetActive(true);
@@ -113,6 +117,8 @@ public class GameManager : MonoBehaviour
             UltraBallBehaviour ballBehaviour = ball.GetComponent<UltraBallBehaviour>();
             ballBehaviour.direction = directionVector;
         }
+        //play shooting noise
+        audioManager.PlayClipOneShot(1);
         
     }
 
@@ -124,6 +130,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Using simple ball");
             currentBall = ballPrefabs[0];
+            audioManager.PlayClipOneShot(2);
         }
 
         //2 is great ball
@@ -131,12 +138,16 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("use great ball");
             currentBall = ballPrefabs[1];
+            audioManager.PlayClipOneShot(2);
+
         }
 
-        if(Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             Debug.Log("Using ultra ball");
             currentBall = ballPrefabs[2];
+            audioManager.PlayClipOneShot(2);
+
         }
     }
 

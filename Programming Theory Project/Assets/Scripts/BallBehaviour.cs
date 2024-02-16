@@ -5,6 +5,9 @@ using UnityEngine;
 public class BallBehaviour : MonoBehaviour
 {
     private GameManager gameManager;
+    private AudioManager audioManager;
+
+
 
     private float speed = 10f;
     private int capturePoints = 15;
@@ -27,6 +30,7 @@ public class BallBehaviour : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManager>();
         StartCoroutine(LifeTime(time));
     }
 
@@ -64,6 +68,7 @@ public class BallBehaviour : MonoBehaviour
         //if we hit a monster, add ball specific points to score
         if(other.gameObject.CompareTag("Monster"))
         {
+            audioManager.PlayClipOneShot(0);
             gameManager.score += CapturePoints;
             gameManager.score += other.GetComponent<MonsterBehaviour>().HitPoints;
             Destroy(other.gameObject);

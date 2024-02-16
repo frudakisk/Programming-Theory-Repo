@@ -8,6 +8,9 @@ public class MainMenuManager : MonoBehaviour
     public static MainMenuManager Instance;
 
     public int highscore;
+    public string username;
+
+    public string highscoreName;
 
     private void Awake()
     {
@@ -25,6 +28,7 @@ public class MainMenuManager : MonoBehaviour
     {
         SaveData data = new SaveData();
         data.highscore = highscore;
+        data.highscoreName = highscoreName;
         string json = JsonUtility.ToJson(data);
         File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
     }
@@ -37,6 +41,7 @@ public class MainMenuManager : MonoBehaviour
             string json = File.ReadAllText(path);
             SaveData data = JsonUtility.FromJson<SaveData>(json);
             highscore = data.highscore;
+            highscoreName = data.highscoreName;
         }
     }
 
@@ -44,5 +49,6 @@ public class MainMenuManager : MonoBehaviour
     public class SaveData
     {
         public int highscore;
+        public string highscoreName;
     }
 }
