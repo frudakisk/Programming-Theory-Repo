@@ -11,7 +11,7 @@ public class BallBehaviour : MonoBehaviour
 
     public Vector3 direction;
 
-    private float time = 5.0f;
+    private float time = 15.0f;
 
     public virtual float Speed
     {
@@ -60,6 +60,8 @@ public class BallBehaviour : MonoBehaviour
         if(other.gameObject.CompareTag("Monster"))
         {
             gameManager.score += CapturePoints;
+            gameManager.score += other.GetComponent<MonsterBehaviour>().HitPoints;
+            Destroy(other.gameObject);
         }
         gameManager.ballCount--;
         Destroy(gameObject);

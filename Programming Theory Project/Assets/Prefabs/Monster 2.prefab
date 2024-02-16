@@ -542,7 +542,7 @@ GameObject:
   - component: {fileID: 808353116223867829}
   - component: {fileID: 7614863742905269552}
   - component: {fileID: 3250338972782655270}
-  - component: {fileID: -9146639874003807806}
+  - component: {fileID: 5806700223765581453}
   m_Layer: 0
   m_Name: Monster 2
   m_TagString: Monster
@@ -618,7 +618,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-9146639874003807806
+--- !u!114 &5806700223765581453
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -627,10 +627,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6488914475660428387}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d62abf7bb5bb54d10a20dc643c8b7eb1, type: 3}
+  m_Script: {fileID: 11500000, guid: 92ad6c36acf4c45c7a508ad1c0601375, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterSpeed: 15
+  monsterSpeed: 100
 --- !u!1 &8182947554298601436
 GameObject:
   m_ObjectHideFlags: 0

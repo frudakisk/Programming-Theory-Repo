@@ -11,6 +11,6 @@ public class UltraBallBehaviour : BallBehaviour
 
     public override int CapturePoints
     {
-        get { return 15; }
+        get { return 5; }
     }
 }

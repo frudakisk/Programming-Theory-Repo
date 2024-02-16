@@ -8,6 +8,13 @@ public class MonsterBehaviour : MonoBehaviour
     private Rigidbody rb;
 
     private float xBound = 50.0f;
+
+    private int hitPoints = 3;
+
+    public virtual int HitPoints
+    {
+        get { return hitPoints; }
+    }
     
     // Start is called before the first frame update
     public virtual void Start()

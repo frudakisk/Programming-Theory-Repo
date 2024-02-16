@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 5246979750241067190}
   - component: {fileID: 5066181640292124112}
   - component: {fileID: 7855535019584878268}
-  - component: {fileID: -8017008487179544046}
+  - component: {fileID: -2016904174886691301}
   m_Layer: 0
   m_Name: Monster 3
   m_TagString: Monster
@@ -374,7 +374,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-8017008487179544046
+--- !u!114 &-2016904174886691301
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -383,10 +383,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3540220255750530747}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d62abf7bb5bb54d10a20dc643c8b7eb1, type: 3}
+  m_Script: {fileID: 11500000, guid: d547464c6fa264b3e901bf5fd559360b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterSpeed: 15
+  monsterSpeed: 100
 --- !u!1 &3830486169850312223
 GameObject:
   m_ObjectHideFlags: 0
