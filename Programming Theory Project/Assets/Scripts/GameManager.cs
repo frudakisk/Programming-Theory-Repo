@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     private float time = 60.0f;
 
     public TextMeshProUGUI timeText;
+    public GameObject gameOverPanel;
 
     // Start is called before the first frame update
     void Start()
@@ -38,12 +39,21 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        KeyForBallSelection();
-
-        if (Input.GetMouseButtonDown(0) && ballCount < maxBalls)
+        if(!gameOver)
         {
-            InstantiateBall();
-            ballCount++;
+            KeyForBallSelection();
+
+            if (Input.GetMouseButtonDown(0) && ballCount < maxBalls)
+            {
+                InstantiateBall();
+                ballCount++;
+            }
+        }
+
+        if(gameOver)
+        {
+            StopAllCoroutines();
+            gameOverPanel.SetActive(true);
         }
     }
 

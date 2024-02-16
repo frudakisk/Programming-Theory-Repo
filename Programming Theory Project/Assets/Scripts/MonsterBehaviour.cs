@@ -6,6 +6,7 @@ public class MonsterBehaviour : MonoBehaviour
 {
     [SerializeField] private float monsterSpeed = 100.0f;
     private Rigidbody rb;
+    private GameManager gameManager;
 
     private float xBound = 50.0f;
 
@@ -20,11 +21,17 @@ public class MonsterBehaviour : MonoBehaviour
     public virtual void Start()
     {
         rb = GetComponent<Rigidbody>();
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
     public virtual void Update()
     {
+        if(gameManager.gameOver && this != null)
+        {
+            Destroy(gameObject);
+        }
+
         rb.AddForce(Vector3.right * monsterSpeed, ForceMode.Force);
 
         CheckBounds();

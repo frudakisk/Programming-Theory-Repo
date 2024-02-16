@@ -34,6 +34,11 @@ public class BallBehaviour : MonoBehaviour
     void Update()
     {
         transform.Translate(direction * Speed * Time.deltaTime);
+
+        if(gameManager.gameOver)
+        {
+            Destroy(gameObject);
+        }
     }
 
     /// <summary>
