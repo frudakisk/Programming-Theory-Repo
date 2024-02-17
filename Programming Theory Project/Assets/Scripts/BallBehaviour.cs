@@ -7,8 +7,6 @@ public class BallBehaviour : MonoBehaviour
     private GameManager gameManager;
     private AudioManager audioManager;
 
-
-
     private float speed = 10f;
     private int capturePoints = 15;
 

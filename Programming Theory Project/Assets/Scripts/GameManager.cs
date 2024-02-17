@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public GameObject currentBall { get; private set; } //want others to access but not change it
 
-    public int maxBalls = 5;
+    //public int maxBalls = 5;
+    public int maxBalls { get; private set; }
     public int ballCount;
 
     public int score;
@@ -31,13 +32,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameOver = false;
-        ballCount = 0;
-        currentBall = ballPrefabs[0];
-        currentHighscore = MainMenuManager.Instance.highscore;
-        audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManager>();
-        StartCoroutine(PlayTime(time));
-        StartCoroutine(SpawnMonsters(spawnRate));
+        StartGame();
     }
 
     // Update is called once per frame
@@ -57,19 +52,30 @@ public class GameManager : MonoBehaviour
         if(gameOver)
         {
             StopAllCoroutines();
-            if (score > currentHighscore)
-            {
-                MainMenuManager.Instance.highscore = score;
-                MainMenuManager.Instance.highscoreName = MainMenuManager.Instance.username;
-            }
-
+            PersistantDataCheck();
             gameOverPanel.SetActive(true);
+        }
+    }
+
+    private void PersistantDataCheck()
+    {
+        if (score > currentHighscore)
+        {
+            MainMenuManager.Instance.highscore = score;
+            MainMenuManager.Instance.highscoreName = MainMenuManager.Instance.username;
         }
     }
 
     public void StartGame()
     {
-        //for later use
+        gameOver = false;
+        ballCount = 0;
+        maxBalls = 5;
+        currentBall = ballPrefabs[0];
+        currentHighscore = MainMenuManager.Instance.highscore;
+        audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManager>();
+        StartCoroutine(PlayTime(time));
+        StartCoroutine(SpawnMonsters(spawnRate));
     }
 
     /// <summary>
